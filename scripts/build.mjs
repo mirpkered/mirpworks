@@ -22,7 +22,7 @@ await cp(resolve(root, "src/brand-integration.css"), resolve(dist, "assets/brand
 await cp(resolve(root, "src/contact.css"), resolve(dist, "assets/contact.css"));
 await cp(resolve(root, "src/script.js"), resolve(dist, "assets/site.js"));
 await cp(resolve(root, "src/assets/hero.png"), resolve(dist, "assets/hero.png"));
-for (const filename of ["word-search-adventure-menu.jpg", "word-search-adventure-gameplay.jpg", "word-search-adventure-adventure-map.jpg"]) {
+for (const filename of ["word-search-adventure-menu.jpg", "word-search-adventure-gameplay.jpg", "word-search-adventure-adventure-map.jpg", "trivia-generator-setup.jpg", "trivia-generator-text-game.jpg", "trivia-generator-image-game.jpg"]) {
   await cp(resolve(root, "src/assets", filename), resolve(dist, "assets", filename));
 }
 await cp(resolve(root, "src/assets/brand/mirpworks-logo-source.jpg"), resolve(dist, "assets/brand/mirpworks-logo-source.jpg"));

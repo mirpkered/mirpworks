@@ -55,7 +55,12 @@ export const projects = [
     overview: "A production application under active development for creating and working with trivia content.",
     systems: ["Content workflow", "Production tooling", "Usable output"],
     principles: ["Test before polishing", "Readability before decoration", "Long-term maintainability"],
-    links: [{ label: "Open App", href: "https://trivia-generator.onrender.com" }]
+    links: [{ label: "Open App", href: "https://trivia-generator.onrender.com" }],
+    screenshots: [
+      { src: "/assets/trivia-generator-setup.jpg", alt: "Trivia Generator setup screen with the master question bank, category selection, and game configuration.", width: 590, height: 1280 },
+      { src: "/assets/trivia-generator-text-game.jpg", alt: "Trivia Generator text-question game showing a question, answer, and game controls.", width: 590, height: 1280 },
+      { src: "/assets/trivia-generator-image-game.jpg", alt: "Trivia Generator image-question game showing a flag-identification question and answer.", width: 590, height: 1280 }
+    ]
   },
   {
     slug: "zombie-swarm",

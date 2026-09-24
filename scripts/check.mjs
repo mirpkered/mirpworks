@@ -20,6 +20,7 @@ for (const route of requiredRoutes) {
     if (route === "/contact/" && (!html.includes("mailto:contact@mirpworks.com") || !["General inquiries", "Support / bug reports", "Media / press"].every(item => html.includes(item)))) failures.push("Contact page is missing an email link or inquiry category");
     if (route === "/projects/zombie-swarm/" && (!html.includes("https://mirpkered.itch.io/zombie-swarm") || !html.includes('target="_blank" rel="noopener noreferrer"') || !html.includes("Commander Zombie"))) failures.push("Zombie Swarm page is missing expected project details or safe itch.io link attributes");
     if (route === "/projects/word-search-adventure/" && (!["word-search-adventure-menu.jpg", "word-search-adventure-gameplay.jpg", "word-search-adventure-adventure-map.jpg"].every(filename => html.includes(`/assets/${filename}`)) || !html.includes('aria-label="Word Search Adventure screenshots"'))) failures.push("Word Search Adventure page is missing its accessible screenshot gallery");
+    if (route === "/projects/trivia-generator/" && (!["trivia-generator-setup.jpg", "trivia-generator-text-game.jpg", "trivia-generator-image-game.jpg"].every(filename => html.includes(`/assets/${filename}`)) || !html.includes('aria-label="Trivia Generator screenshots"'))) failures.push("Trivia Generator page is missing its accessible screenshot gallery");
     if (["/projects/", "/projects/word-search-adventure/", "/projects/slabberjaws/", "/projects/trivia-generator/", "/projects/zombie-swarm/"].includes(route)) {
       for (const [slug, href, label] of [
         ["word-search-adventure", "https://wordsearchadventure.onrender.com/", "Play"],
@@ -36,7 +37,7 @@ for (const route of requiredRoutes) {
   } catch { failures.push(`Missing built file: ${page.output}`); }
 }
 
-for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/brand-integration.css", "assets/contact.css", "assets/site.js", "assets/hero.png", "assets/word-search-adventure-menu.jpg", "assets/word-search-adventure-gameplay.jpg", "assets/word-search-adventure-adventure-map.jpg", "assets/brand/mirpworks-logo-source.jpg", "assets/brand/mirpworks-logo.jpg", "assets/brand/mirpworks-mark.jpg", "favicon.svg", "_headers", "404.html"]) {
+for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/brand-integration.css", "assets/contact.css", "assets/site.js", "assets/hero.png", "assets/word-search-adventure-menu.jpg", "assets/word-search-adventure-gameplay.jpg", "assets/word-search-adventure-adventure-map.jpg", "assets/trivia-generator-setup.jpg", "assets/trivia-generator-text-game.jpg", "assets/trivia-generator-image-game.jpg", "assets/brand/mirpworks-logo-source.jpg", "assets/brand/mirpworks-logo.jpg", "assets/brand/mirpworks-mark.jpg", "favicon.svg", "_headers", "404.html"]) {
   try { await stat(resolve(dist, asset)); } catch { failures.push(`Missing asset: ${asset}`); }
 }
 
