@@ -1,0 +1,77 @@
+/* Shared spacing and width refinements to keep every route cohesive and efficient. */
+:root { --shell: min(1240px, calc(100% - 2rem)); }
+.section { padding-block: clamp(2.75rem, 5vw, 4rem); }
+.hero { min-height: clamp(30rem, 74svh, 42rem); }
+.hero-inner { padding-block: clamp(3rem, 7vh, 5rem) clamp(2.5rem, 5vh, 3.5rem); }
+.hero-copy { margin: 1.2rem 0; max-width: 32rem; }
+.hero-logo { width: min(100%, 21rem); margin-bottom: 1rem; }
+.page-head { padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.25rem, 4vw, 3.25rem); }
+.page-head h1 { font-size: clamp(3.5rem, 11vw, 7rem); }
+.page-head > p:last-child { margin-top: 1.15rem; }
+.section-heading { margin-bottom: 1.35rem; }
+.section-heading h2, .split h2, .detail-grid h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+.project-card { min-height: 17rem; padding: 1.15rem; }
+.project-card h3 { font-size: clamp(1.55rem, 2.5vw, 1.9rem); }
+.project-card.compact { min-height: 12rem; }
+.project-grid, .compact-grid { gap: .85rem; }
+.studio-intro { padding-block: clamp(3rem, 6vw, 4.5rem); }
+.site-footer { padding-block: 2rem; }
+.principles { padding-block: 3rem; }
+.principle-list article { padding-block: 1rem; }
+.principle-list h3 { font-size: 1.4rem; }
+.about-grid { gap: 2rem; }
+.about-grid h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+.prose { font-size: 1rem; }
+.prose p { margin-block: .8rem; }
+.closing-panel { padding-block: 3.5rem; }
+.display-line { margin-bottom: 1.25rem; font-size: clamp(2.75rem, 7vw, 5.5rem); }
+.project-hero { padding-block: 2rem 2.75rem; }
+.back-link { margin-bottom: clamp(1.5rem, 4vw, 3rem); }
+.project-title { gap: 1.5rem; }
+.project-title h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
+.project-body { padding-bottom: 3.5rem; }
+.project-overview { padding-block: 1.75rem; }
+.project-overview h2 { max-width: 52rem; font-size: clamp(1.65rem, 3.3vw, 2.8rem); }
+.media-placeholder { width: min(100%, 60rem); max-height: 30rem; margin-inline: auto; }
+.detail-grid { gap: 1.5rem; padding-block: 2rem; }
+.detail-grid section { padding-top: 1rem; }
+.detail-grid ul { margin-top: 1rem; }
+.detail-grid li { padding-block: .55rem; }
+.development-note { gap: .75rem; padding: 1.25rem; }
+.contact-grid { gap: .75rem; }
+
+@media (min-width: 640px) {
+  :root { --shell: min(1240px, calc(100% - 3rem)); }
+  .project-grid, .compact-grid { gap: 1rem; }
+}
+
+@media (min-width: 820px) {
+  .hero { min-height: clamp(31rem, 70svh, 40rem); }
+  .hero-inner { padding-block: 4rem; }
+  .page-head { padding-block: 5rem 3.5rem; }
+  .project-hero { padding-block: 2.5rem 3.5rem; }
+  .project-card { min-height: 18rem; padding: 1.25rem; }
+}
+
+@media (min-width: 1100px) {
+  :root { --shell: min(1320px, calc(100% - 4rem)); }
+  .hero { min-height: min(39rem, 72svh); }
+  .hero-inner { padding-block: 4.5rem; }
+  .project-card { min-height: 19rem; }
+  .project-card.compact { min-height: 12rem; }
+}
+
+@media (max-width: 639px) {
+  .project-grid, .compact-grid { gap: .75rem; }
+  .project-card { min-height: 15rem; padding: 1rem; }
+  .project-card.compact { min-height: 11rem; }
+  .feature-grid .project-card:first-child { grid-column: auto; }
+}
+
+@media (max-width: 374px) {
+  .hero { min-height: 28rem; }
+  .hero-logo { width: min(100%, 17rem); }
+  .page-head h1 { font-size: clamp(3rem, 15vw, 3.5rem); }
+  .project-title h1 { font-size: clamp(2.55rem, 12vw, 3.2rem); }
+  .project-card { min-height: 14rem; }
+}

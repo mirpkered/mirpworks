@@ -37,7 +37,7 @@ for (const route of requiredRoutes) {
   } catch { failures.push(`Missing built file: ${page.output}`); }
 }
 
-for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/brand-integration.css", "assets/contact.css", "assets/site.js", "assets/hero.png", "assets/word-search-adventure-menu.jpg", "assets/word-search-adventure-gameplay.jpg", "assets/word-search-adventure-adventure-map.jpg", "assets/trivia-generator-setup.jpg", "assets/trivia-generator-text-game.jpg", "assets/trivia-generator-image-game.jpg", "assets/brand/mirpworks-logo-source.jpg", "assets/brand/mirpworks-logo.jpg", "assets/brand/mirpworks-mark.jpg", "favicon.svg", "_headers", "404.html"]) {
+for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/brand-integration.css", "assets/contact.css", "assets/density.css", "assets/site.js", "assets/hero.png", "assets/word-search-adventure-menu.jpg", "assets/word-search-adventure-gameplay.jpg", "assets/word-search-adventure-adventure-map.jpg", "assets/trivia-generator-setup.jpg", "assets/trivia-generator-text-game.jpg", "assets/trivia-generator-image-game.jpg", "assets/brand/mirpworks-logo-source.jpg", "assets/brand/mirpworks-logo.jpg", "assets/brand/mirpworks-mark.jpg", "favicon.svg", "_headers", "404.html"]) {
   try { await stat(resolve(dist, asset)); } catch { failures.push(`Missing asset: ${asset}`); }
 }
 
