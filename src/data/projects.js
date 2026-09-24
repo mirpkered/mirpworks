@@ -7,7 +7,8 @@ export const projects = [
     featured: true,
     overview: "A word-search game in active development, shaped around an approachable and readable play experience.",
     systems: ["Core play experience", "Interface and readability", "Progression structure"],
-    principles: ["Readability before decoration", "Design for long play sessions", "Accessibility is a feature"]
+    principles: ["Readability before decoration", "Design for long play sessions", "Accessibility is a feature"],
+    links: [{ label: "Play", href: "https://wordsearchadventure.onrender.com/" }]
   },
   {
     slug: "winkbound",
@@ -37,7 +38,8 @@ export const projects = [
     featured: false,
     overview: "An application in active development with a focus on a clear, maintainable user experience.",
     systems: ["Application workflow", "Responsive interface", "Maintainable foundations"],
-    principles: ["Mobile-first whenever practical", "Accessibility is a feature", "Readability before decoration"]
+    principles: ["Mobile-first whenever practical", "Accessibility is a feature", "Readability before decoration"],
+    links: [{ label: "Open App", href: "https://mirpkered.github.io/slabberjaws/" }]
   },
   {
     slug: "trivia-generator",
@@ -47,7 +49,8 @@ export const projects = [
     featured: true,
     overview: "A production application under active development for creating and working with trivia content.",
     systems: ["Content workflow", "Production tooling", "Usable output"],
-    principles: ["Test before polishing", "Readability before decoration", "Long-term maintainability"]
+    principles: ["Test before polishing", "Readability before decoration", "Long-term maintainability"],
+    links: [{ label: "Open App", href: "https://trivia-generator.onrender.com" }]
   },
   {
     slug: "zombie-swarm",

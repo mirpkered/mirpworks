@@ -19,6 +19,19 @@ for (const route of requiredRoutes) {
     if ((html.match(/<h1/g) || []).length !== 1) failures.push(`${route} must have exactly one h1`);
     if (route === "/contact/" && (!html.includes("mailto:contact@mirpworks.com") || !["General inquiries", "Support / bug reports", "Media / press"].every(item => html.includes(item)))) failures.push("Contact page is missing an email link or inquiry category");
     if (route === "/projects/zombie-swarm/" && (!html.includes("https://mirpkered.itch.io/zombie-swarm") || !html.includes('target="_blank" rel="noopener noreferrer"') || !html.includes("Commander Zombie"))) failures.push("Zombie Swarm page is missing expected project details or safe itch.io link attributes");
+    if (["/projects/", "/projects/word-search-adventure/", "/projects/slabberjaws/", "/projects/trivia-generator/", "/projects/zombie-swarm/"].includes(route)) {
+      for (const [slug, href, label] of [
+        ["word-search-adventure", "https://wordsearchadventure.onrender.com/", "Play"],
+        ["slabberjaws", "https://mirpkered.github.io/slabberjaws/", "Open App"],
+        ["trivia-generator", "https://trivia-generator.onrender.com", "Open App"],
+        ["zombie-swarm", "https://mirpkered.itch.io/zombie-swarm", "View on itch.io"]
+      ]) {
+        const expected = route === "/projects/" || route === `/projects/${slug}/`;
+        if (expected && (!html.includes(`href="${href}"`) || !html.includes(`>${label} <span`) || !html.includes('target="_blank" rel="noopener noreferrer"'))) failures.push(`${route} is missing the safe ${label} CTA for ${slug}`);
+        if (!expected && html.includes(`href="${href}"`)) failures.push(`${route} unexpectedly contains a live link for ${slug}`);
+      }
+      if ((route === "/projects/winkbound/" || route === "/projects/stillwater/") && ["https://wordsearchadventure.onrender.com/", "https://mirpkered.github.io/slabberjaws/", "https://trivia-generator.onrender.com", "https://mirpkered.itch.io/zombie-swarm"].some(href => html.includes(href))) failures.push(`${route} unexpectedly contains a live project URL`);
+    }
   } catch { failures.push(`Missing built file: ${page.output}`); }
 }
 
