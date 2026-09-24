@@ -20,7 +20,7 @@ for (const route of requiredRoutes) {
   } catch { failures.push(`Missing built file: ${page.output}`); }
 }
 
-for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/site.js", "assets/hero.png", "favicon.svg", "_headers", "404.html"]) {
+for (const asset of ["assets/styles.css", "assets/responsive-fix.css", "assets/brand-integration.css", "assets/site.js", "assets/hero.png", "assets/brand/mirpworks-logo-source.jpg", "assets/brand/mirpworks-logo.jpg", "assets/brand/mirpworks-mark.jpg", "favicon.svg", "_headers", "404.html"]) {
   try { await stat(resolve(dist, asset)); } catch { failures.push(`Missing asset: ${asset}`); }
 }
 

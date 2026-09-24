@@ -12,7 +12,7 @@ const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (character) => ({
 }[character]));
 
 function wordmark() {
-  return `<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Mirpworks</span>`;
+  return `<img class="brand-icon" src="/assets/brand/mirpworks-mark.jpg" alt="" width="36" height="32"><span>Mirpworks</span>`;
 }
 
 function layout({ title, description, path, content, bodyClass = "" }) {
@@ -28,6 +28,7 @@ function layout({ title, description, path, content, bodyClass = "" }) {
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="/assets/responsive-fix.css">
+  <link rel="stylesheet" href="/assets/brand-integration.css">
   <script src="/assets/site.js" defer></script>
 </head>
 <body class="${bodyClass}">
@@ -79,7 +80,7 @@ export const pages = [
       description: "Mirpworks is an independent game and application development studio.",
       path: "/",
       bodyClass: "home",
-      content: `<section class="hero"><div class="hero-art" aria-hidden="true"></div><div class="shell hero-inner"><p class="eyebrow">Independent game & application studio</p><h1>Let’s play<br>a game<span>.</span></h1><p class="hero-copy">Polished, approachable games and applications—made with thoughtful design, strong usability, and room for discovery.</p><a class="button" href="/projects/">Explore our projects <span aria-hidden="true">↗</span></a></div><p class="art-credit">Original studio artwork</p></section>
+      content: `<section class="hero"><div class="hero-art" aria-hidden="true"></div><div class="shell hero-inner"><p class="eyebrow">Independent game & application studio</p><h1 class="hero-logo"><img src="/assets/brand/mirpworks-logo.jpg" alt="Mirpworks — Let’s play a game."></h1><p class="hero-copy">Polished, approachable games and applications—made with thoughtful design, strong usability, and room for discovery.</p><a class="button" href="/projects/">Explore our projects <span aria-hidden="true">↗</span></a></div><p class="art-credit">Original studio artwork</p></section>
       <section class="section shell"><div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Projects in motion</h2></div><a class="text-link" href="/projects/">All projects <span aria-hidden="true">→</span></a></div><div class="project-grid feature-grid">${projects.filter(project => project.featured).map(project => projectCard(project)).join("")}</div></section>
       <section class="section ruled shell"><div class="section-heading"><div><p class="eyebrow">More from the studio</p><h2>In the workshop</h2></div></div><div class="compact-grid">${projects.filter(project => !project.featured).map(project => projectCard(project, true)).join("")}</div></section>
       <section class="studio-intro"><div class="shell split"><p class="eyebrow">About Mirpworks</p><div><h2>Thoughtful by design.<br>Built to last.</h2><p>Mirpworks is an independent studio exploring games and useful applications. We care about clear interfaces, accessible experiences, environmental storytelling, and foundations that remain maintainable over time.</p><a class="text-link" href="/about/">Meet the studio <span aria-hidden="true">→</span></a></div></div></section>`

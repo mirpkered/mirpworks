@@ -52,6 +52,8 @@ No environment variables, Functions, database, authentication, analytics, or cus
 - `src/data/projects.js` — central project metadata
 - `src/site.js` — reusable layout, cards, and page templates
 - `src/styles.css` — site-wide responsive design system
+- `src/brand-integration.css` — logo placement in the shared wordmark and home hero
+- `src/assets/brand/` — original supplied logo and tightly framed logo crops
 - `src/script.js` — mobile navigation and small progressive enhancements
 - `scripts/build.mjs` — static route generator
 - `scripts/check.mjs` — route, link, and markup checks

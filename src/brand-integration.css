@@ -1,0 +1,39 @@
+.brand-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2rem;
+  object-fit: cover;
+  background: var(--paper);
+  border-radius: .15rem;
+}
+
+.hero-logo {
+  width: min(100%, 25rem);
+  margin: 0 0 2rem;
+  padding: .25rem;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid rgba(242, 240, 233, .55);
+  border-radius: .2rem;
+  box-shadow: 0 .75rem 2rem rgba(0, 0, 0, .14);
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 374px) {
+  .hero-logo {
+    width: min(100%, 21rem);
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 820px) {
+  .hero-logo {
+    width: min(100%, 27rem);
+  }
+}
