@@ -1,0 +1,13 @@
+@media (min-width: 640px) {
+  .project-title {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+  }
+
+  .project-title > div {
+    min-width: 0;
+  }
+
+  .project-title h1 {
+    overflow-wrap: anywhere;
+  }
+}
