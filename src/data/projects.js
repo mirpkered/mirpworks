@@ -8,7 +8,12 @@ export const projects = [
     overview: "A word-search game in active development, shaped around an approachable and readable play experience.",
     systems: ["Core play experience", "Interface and readability", "Progression structure"],
     principles: ["Readability before decoration", "Design for long play sessions", "Accessibility is a feature"],
-    links: [{ label: "Play", href: "https://wordsearchadventure.onrender.com/" }]
+    links: [{ label: "Play", href: "https://wordsearchadventure.onrender.com/" }],
+    screenshots: [
+      { src: "/assets/word-search-adventure-menu.jpg", alt: "Word Search Adventure main menu with Free Play, Adventure, Daily, Customize, Achievements, Statistics, and Settings.", width: 590, height: 1280 },
+      { src: "/assets/word-search-adventure-gameplay.jpg", alt: "Word Search Adventure free-play puzzle with a letter grid, word list, timer, and found-word highlight.", width: 590, height: 1280 },
+      { src: "/assets/word-search-adventure-adventure-map.jpg", alt: "Word Search Adventure Adventure mode level map, showing a path through a colorful park with numbered levels.", width: 590, height: 1280 }
+    ]
   },
   {
     slug: "winkbound",
