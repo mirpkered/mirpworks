@@ -1,0 +1,16 @@
+.contact-section { padding-top: 1rem; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.contact-card { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--line, #343b36); color: inherit; text-decoration: none; background: var(--surface, #171c19); }
+.contact-card:hover, .contact-card:focus-visible { border-color: currentColor; }
+.contact-card h3 { margin: 0; font-size: clamp(1.2rem, 2vw, 1.6rem); }
+.contact-card .text-link { margin-top: auto; }
+.project-facts { margin: 3rem 0; padding: 1.5rem 0; border-top: 1px solid var(--line, #343b36); border-bottom: 1px solid var(--line, #343b36); }
+.project-facts dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; margin: 1.25rem 0 0; }
+.project-facts dt { color: var(--muted, #a2aaa4); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+.project-facts dd { margin: .4rem 0 0; }
+.gameplay-details { margin: 3rem 0; }
+.gameplay-details h2 { margin: .5rem 0 1.25rem; }
+.gameplay-details ul { display: flex; flex-wrap: wrap; gap: .65rem; padding: 0; list-style: none; }
+.gameplay-details li { padding: .65rem .9rem; border: 1px solid var(--line, #343b36); }
+.project-links { margin: 2rem 0; }
+@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } .project-facts dl { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

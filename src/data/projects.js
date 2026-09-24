@@ -48,5 +48,18 @@ export const projects = [
     overview: "A production application under active development for creating and working with trivia content.",
     systems: ["Content workflow", "Production tooling", "Usable output"],
     principles: ["Test before polishing", "Readability before decoration", "Long-term maintainability"]
+  },
+  {
+    slug: "zombie-swarm",
+    name: "Zombie Swarm",
+    type: "Game",
+    featured: false,
+    overview: "A dark-comedy Unity game with a fixed elevated isometric / 2.5D view and retro pixel art. Gameplay involves a Commander Zombie, Basic Zombies, Civilians, and specialist characters.",
+    engine: "Unity",
+    presentation: "Fixed elevated isometric / 2.5D",
+    visualDirection: "Retro pixel art",
+    tone: "Dark comedy",
+    gameplay: ["Commander Zombie", "Basic Zombies", "Civilians", "Specialist characters"],
+    links: [{ label: "View on itch.io", href: "https://mirpkered.itch.io/zombie-swarm" }]
   }
 ];

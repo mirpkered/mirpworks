@@ -4,7 +4,8 @@ const nav = [
   ["/", "Mirpworks"],
   ["/projects/", "Projects"],
   ["/studio/", "Studio"],
-  ["/about/", "About"]
+  ["/about/", "About"],
+  ["/contact/", "Contact"]
 ];
 
 const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (character) => ({
@@ -29,6 +30,7 @@ function layout({ title, description, path, content, bodyClass = "" }) {
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="/assets/responsive-fix.css">
   <link rel="stylesheet" href="/assets/brand-integration.css">
+  <link rel="stylesheet" href="/assets/contact.css">
   <script src="/assets/site.js" defer></script>
 </head>
 <body class="${bodyClass}">
@@ -56,7 +58,7 @@ function layout({ title, description, path, content, bodyClass = "" }) {
 
 function projectCard(project, compact = false) {
   return `<article class="project-card${project.featured ? " featured" : ""}${compact ? " compact" : ""}">
-    <div class="card-top"><span class="eyebrow">${project.type}</span><span class="status">${project.status}</span></div>
+    <div class="card-top"><span class="eyebrow">${project.type}</span>${project.status ? `<span class="status">${project.status}</span>` : ""}</div>
     <div><h3><a href="/projects/${project.slug}/">${project.name}</a></h3>${compact ? "" : `<p>${project.overview}</p>`}</div>
     <a class="text-link" href="/projects/${project.slug}/" aria-label="View ${project.name}">View project <span aria-hidden="true">↗</span></a>
   </article>`;
@@ -120,6 +122,17 @@ export const pages = [
       <section class="section shell"><div class="about-grid"><h2>We make games and applications with intention.</h2><div class="prose"><p>Mirpworks is an independent development studio focused on polished, approachable experiences. Our work spans games and practical applications, but the priorities stay consistent: thoughtful design, strong usability, accessibility, and maintainable foundations.</p><p>We value experimentation when it clarifies an idea. In games, environmental storytelling can add texture and meaning—but it should always support the player’s understanding of the world and never compete with interaction.</p><p>We build for the long term: testing before polishing, respecting the realities of mobile screens, and treating reusable work as part of a shared studio library.</p></div></div></section>
       <section class="closing-panel"><div class="shell"><p class="eyebrow">The invitation</p><p class="display-line">Let’s play a game.</p><a class="button light" href="/projects/">See what we’re making <span aria-hidden="true">↗</span></a></div></section>`
     })
+  },
+  {
+    path: "/contact/",
+    output: "contact/index.html",
+    html: layout({
+      title: "Contact",
+      description: "Contact Mirpworks for general inquiries, support, or media and press.",
+      path: "/contact/",
+      content: `<header class="page-head shell"><p class="eyebrow">Get in touch</p><h1>Contact</h1><p>For general inquiries, support, or media and press, email us at <a href="mailto:contact@mirpworks.com">contact@mirpworks.com</a>.</p></header>
+      <section class="section shell contact-section" aria-labelledby="contact-options"><div class="section-heading"><div><p class="eyebrow">How can we help?</p><h2 id="contact-options">Choose a topic</h2></div></div><div class="contact-grid"><a class="contact-card" href="mailto:contact@mirpworks.com"><span class="eyebrow">01</span><h3>General inquiries</h3><span class="text-link">Email Mirpworks <span aria-hidden="true">↗</span></span></a><a class="contact-card" href="mailto:contact@mirpworks.com"><span class="eyebrow">02</span><h3>Support / bug reports</h3><span class="text-link">Email Mirpworks <span aria-hidden="true">↗</span></span></a><a class="contact-card" href="mailto:contact@mirpworks.com"><span class="eyebrow">03</span><h3>Media / press</h3><span class="text-link">Email Mirpworks <span aria-hidden="true">↗</span></span></a></div></section>`
+    })
   }
 ];
 
@@ -131,8 +144,8 @@ for (const project of projects) {
       title: project.name,
       description: `${project.name} is a ${project.type.toLowerCase()} project by Mirpworks.`,
       path: `/projects/${project.slug}/`,
-      content: `<header class="project-hero shell"><a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a><div class="project-title"><div><p class="eyebrow">${project.type}</p><h1>${project.name}</h1></div><dl><div><dt>Status</dt><dd>${project.status}</dd></div><div><dt>Type</dt><dd>${project.type}</dd></div></dl></div></header>
-      <section class="project-body shell"><div class="project-overview"><p class="eyebrow">Overview</p><h2>${project.overview}</h2></div><div class="media-placeholder" role="img" aria-label="Media for ${project.name} will be added as development progresses"><span aria-hidden="true">MW—${String(projects.indexOf(project) + 1).padStart(2, "0")}</span><p>Project media<br>coming later</p></div><div class="detail-grid"><section><p class="eyebrow">Major systems</p><h2>Areas in development</h2><ul>${project.systems.map(item => `<li>${item}</li>`).join("")}</ul></section><section><p class="eyebrow">Design principles</p><h2>What guides the work</h2><ul>${project.principles.map(item => `<li>${item}</li>`).join("")}</ul></section></div><aside class="development-note"><p class="eyebrow">Development status</p><p>This page reflects the project’s current public status. More detail, media, and relevant links will be added as the work is ready to share.</p></aside></section>`
+      content: `<header class="project-hero shell"><a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a><div class="project-title"><div><p class="eyebrow">${project.type}</p><h1>${project.name}</h1></div><dl>${project.status ? `<div><dt>Status</dt><dd>${project.status}</dd></div>` : ""}<div><dt>Type</dt><dd>${project.type}</dd></div></dl></div></header>
+      <section class="project-body shell"><div class="project-overview"><p class="eyebrow">Overview</p><h2>${project.overview}</h2></div><div class="media-placeholder" role="img" aria-label="Media for ${project.name} will be added as development progresses"><span aria-hidden="true">MW—${String(projects.indexOf(project) + 1).padStart(2, "0")}</span><p>Project media<br>coming later</p></div>${project.engine || project.presentation || project.visualDirection || project.tone ? `<section class="project-facts" aria-label="Project details"><p class="eyebrow">At a glance</p><dl>${[["Engine", project.engine], ["Presentation", project.presentation], ["Visual direction", project.visualDirection], ["Tone", project.tone]].filter(([, value]) => value).map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl></section>` : ""}${project.gameplay ? `<section class="gameplay-details"><p class="eyebrow">Gameplay</p><h2>Characters and roles</h2><ul>${project.gameplay.map(item => `<li>${item}</li>`).join("")}</ul></section>` : ""}${project.systems?.length || project.principles?.length ? `<div class="detail-grid">${project.systems?.length ? `<section><p class="eyebrow">Major systems</p><h2>Areas in development</h2><ul>${project.systems.map(item => `<li>${item}</li>`).join("")}</ul></section>` : ""}${project.principles?.length ? `<section><p class="eyebrow">Design principles</p><h2>What guides the work</h2><ul>${project.principles.map(item => `<li>${item}</li>`).join("")}</ul></section>` : ""}</div>` : ""}${project.links?.length ? `<section class="project-links" aria-label="Project links">${project.links.map(link => `<a class="button" href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label} <span aria-hidden="true">↗</span></a>`).join("")}</section>` : ""}${project.status ? `<aside class="development-note"><p class="eyebrow">Development status</p><p>This page reflects the project’s current public status. More detail, media, and relevant links will be added as the work is ready to share.</p></aside>` : ""}</section>`
     })
   });
 }

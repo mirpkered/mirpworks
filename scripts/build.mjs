@@ -19,6 +19,7 @@ for (const page of pages) {
 await cp(resolve(root, "src/styles.css"), resolve(dist, "assets/styles.css"));
 await cp(resolve(root, "src/responsive-fix.css"), resolve(dist, "assets/responsive-fix.css"));
 await cp(resolve(root, "src/brand-integration.css"), resolve(dist, "assets/brand-integration.css"));
+await cp(resolve(root, "src/contact.css"), resolve(dist, "assets/contact.css"));
 await cp(resolve(root, "src/script.js"), resolve(dist, "assets/site.js"));
 await cp(resolve(root, "src/assets/hero.png"), resolve(dist, "assets/hero.png"));
 await cp(resolve(root, "src/assets/brand/mirpworks-logo-source.jpg"), resolve(dist, "assets/brand/mirpworks-logo-source.jpg"));
