@@ -16,6 +16,17 @@ export const projects = [
     ]
   },
   {
+    slug: "lets-go-shall-we",
+    name: "Let’s Go, Shall We?",
+    status: "Active Development",
+    type: "Game",
+    featured: false,
+    overview: "A mobile-first, bite-sized, choice-driven text RPG inspired by classic DOS-era interactive fiction.",
+    systems: ["Short, replayable runs and compact play sessions", "Touch-friendly 2×2 choice-button interaction", "Fair, foreshadowed risk without arbitrary instant-death traps", "Narrative continuity, environmental storytelling, and carrying one item forward after successful runs"],
+    principles: ["Readability before decoration", "Accessibility is a feature", "Environmental storytelling should enhance interaction"],
+    links: [{ label: "Play", href: "https://mirpkered.github.io/lets-go-shall-we/" }]
+  },
+  {
     slug: "winkbound",
     name: "Winkbound",
     status: "Concept / Active Development",
