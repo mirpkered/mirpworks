@@ -35,7 +35,7 @@ function layout({ title, description, path, content, bodyClass = "" }) {
   <link rel="stylesheet" href="/assets/responsive-fix.css">
   <link rel="stylesheet" href="/assets/brand-integration.css">
   <link rel="stylesheet" href="/assets/contact.css">
-  <link rel="stylesheet" href="/assets/density.css">
+  <link rel="stylesheet" href="/assets/density.css?v=d6cabef">
   <script src="/assets/site.js" defer></script>
 </head>
 <body class="${bodyClass}">
