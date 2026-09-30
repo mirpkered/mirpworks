@@ -78,12 +78,12 @@
 
 /* Soft-neutral presentation and shared, high-contrast content surfaces. */
 :root {
-  --paper: #edf1f4;
-  --surface: #f9fbfc;
-  --surface-subtle: #e5ebef;
+  --paper: #dce5eb;
+  --surface: #f5f8fa;
+  --surface-subtle: #cfdbe3;
   --ink: #111513;
   --muted: #4d5a63;
-  --line: rgba(24, 40, 51, .16);
+  --line: rgba(24, 40, 51, .22);
   --teal: #315f54;
   --surface-shadow: 0 8px 22px rgba(24, 40, 51, .055);
   --surface-radius: .65rem;
@@ -126,7 +126,10 @@ body { background: var(--paper); }
 .studio-intro .eyebrow { color: #a9d2c6; }
 .site-footer { background: #090c0b; }
 .contact-card { color: #111513; background: var(--surface); }
-.contact-card:hover { background: #f0f5f7; border-color: #52616a; }
+.contact-card h3,
+.contact-card .text-link { color: #111513; }
+.contact-card .eyebrow { color: #315f54; }
+.contact-card:hover { background: #edf3f6; border-color: #52616a; }
 .contact-card:focus-visible { border-color: #111513; }
 .contact-card a,
 .page-head a[href^="mailto:"] { color: #14584d; }
@@ -135,6 +138,8 @@ body { background: var(--paper); }
   text-decoration-thickness: .08em;
   text-underline-offset: .16em;
 }
+.contact-card:hover .text-link,
+.page-head a[href^="mailto:"]:hover { color: #0b3f37; }
 :focus-visible {
   outline: 3px solid #111513;
   outline-offset: 3px;
