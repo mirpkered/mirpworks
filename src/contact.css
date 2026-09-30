@@ -13,6 +13,9 @@
 .gameplay-details ul { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
 .gameplay-details li { padding: .45rem .7rem; border: 1px solid var(--line, #343b36); }
 .project-links { margin: 1rem 0 1.25rem; }
+.project-links .button + .button { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.project-links .button + .button:hover { background: #e5ebef; }
+.card-actions .live-link + .live-link { color: #43515a; font-weight: 650; }
 .card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; }
 .card-actions .live-link { min-height: 2.75rem; display: inline-flex; align-items: center; }
 .project-links .button { min-height: 2.75rem; }
