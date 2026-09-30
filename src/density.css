@@ -75,3 +75,68 @@
   .project-title h1 { font-size: clamp(2.55rem, 12vw, 3.2rem); }
   .project-card { min-height: 14rem; }
 }
+
+/* Soft-neutral presentation and shared, high-contrast content surfaces. */
+:root {
+  --paper: #edf1f4;
+  --surface: #f9fbfc;
+  --surface-subtle: #e5ebef;
+  --ink: #111513;
+  --muted: #4d5a63;
+  --line: rgba(24, 40, 51, .16);
+  --teal: #315f54;
+  --surface-shadow: 0 8px 22px rgba(24, 40, 51, .055);
+  --surface-radius: .65rem;
+  --focus-ring: #edae49;
+}
+
+body { background: var(--paper); }
+.eyebrow { color: var(--teal); }
+.section, .page-head, .project-body { background: transparent; }
+.project-card,
+.contact-card,
+.screenshot-grid figure,
+.music-track,
+.development-note,
+.gameplay-details li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--surface-radius);
+  box-shadow: var(--surface-shadow);
+}
+.project-card:nth-child(3n+2) { background: var(--surface); }
+.project-card:hover { background: #f4f7f9; }
+.development-note { background: var(--surface-subtle); }
+.card-top .eyebrow,
+.music-track dt,
+.contact-card .eyebrow { color: #315f54; }
+.project-card p,
+.page-head > p:last-child,
+.principle-list p,
+.project-summary,
+.screenshot-grid figcaption,
+.music-track .music-credit,
+.music-library-note { color: #43515a; }
+.project-title dt,
+.count,
+.principle-list article > span,
+.project-facts dt { color: #52616a; }
+.split > div > p,
+.site-footer p { color: #c2cbc7; }
+.studio-intro .eyebrow { color: #a9d2c6; }
+.site-footer { background: #090c0b; }
+.contact-card { color: #111513; background: var(--surface); }
+.contact-card:hover { background: #f0f5f7; border-color: #52616a; }
+.contact-card:focus-visible { border-color: #111513; }
+.contact-card a,
+.page-head a[href^="mailto:"] { color: #14584d; }
+.page-head a[href^="mailto:"] {
+  text-decoration: underline;
+  text-decoration-thickness: .08em;
+  text-underline-offset: .16em;
+}
+:focus-visible {
+  outline: 3px solid #111513;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--focus-ring);
+}
