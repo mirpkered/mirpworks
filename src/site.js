@@ -171,7 +171,7 @@ for (const project of projects.filter(project => project.artwork || project.deve
 
   if (project.developmentNote) {
     const genericNote = "This page reflects the project’s current public status. More detail, media, and relevant links will be added as the work is ready to share.";
-    if (!page.html.includes(genericNote)) throw new Error(`Project page template is missing the development note for ${project.slug}`);
-    page.html = page.html.replace(genericNote, project.developmentNote);
+    if (page.html.includes(genericNote)) page.html = page.html.replace(genericNote, project.developmentNote);
+    else if (!page.html.includes(project.developmentNote)) throw new Error(`Project page template is missing the development note for ${project.slug}`);
   }
 }

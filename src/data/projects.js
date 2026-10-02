@@ -46,7 +46,7 @@ export const projects = [
       height: 1254
     },
     developmentNote: "Playable development build. Mechanics, balance, art, audio, dungeon generation, and content continue to evolve.",
-    links: [{ label: "Play Current Build", href: "https://mirpkered.github.io/why-is-there-a-hole-in-the-middle-of-the-town/" }],
+    links: [{ label: "Play Current Build", href: "https://mirpkered.github.io/why-is-there-a-hole-in-the-middle-of-town/" }],
     systems: [
       "Turn-based, single-player exploration through procedurally evolving dungeons",
       "Persistent automapping of discovered spaces",
