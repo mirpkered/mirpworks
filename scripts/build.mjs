@@ -21,11 +21,13 @@ await cp(resolve(root, "src/responsive-fix.css"), resolve(dist, "assets/responsi
 await cp(resolve(root, "src/brand-integration.css"), resolve(dist, "assets/brand-integration.css"));
 await cp(resolve(root, "src/contact.css"), resolve(dist, "assets/contact.css"));
 await cp(resolve(root, "src/density.css"), resolve(dist, "assets/density.css"));
+await cp(resolve(root, "src/project-artwork.css"), resolve(dist, "assets/project-artwork.css"));
 await cp(resolve(root, "src/script.js"), resolve(dist, "assets/site.js"));
 await cp(resolve(root, "src/assets/hero.png"), resolve(dist, "assets/hero.png"));
 for (const filename of ["word-search-adventure-menu.jpg", "word-search-adventure-gameplay.jpg", "word-search-adventure-adventure-map.jpg", "trivia-generator-setup.jpg", "trivia-generator-text-game.jpg", "trivia-generator-image-game.jpg"]) {
   await cp(resolve(root, "src/assets", filename), resolve(dist, "assets", filename));
 }
+await cp(resolve(root, "src/assets/why-is-there-a-hole-in-the-middle-of-town.png"), resolve(dist, "assets/why-is-there-a-hole-in-the-middle-of-town.png"));
 await cp(resolve(root, "src/assets/brand/mirpworks-logo-source.jpg"), resolve(dist, "assets/brand/mirpworks-logo-source.jpg"));
 await cp(resolve(root, "src/assets/brand/mirpworks-logo.jpg"), resolve(dist, "assets/brand/mirpworks-logo.jpg"));
 await cp(resolve(root, "src/assets/brand/mirpworks-mark.jpg"), resolve(dist, "assets/brand/mirpworks-mark.jpg"));

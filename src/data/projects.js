@@ -33,6 +33,37 @@ export const projects = [
     ]
   },
   {
+    slug: "why-is-there-a-hole-in-the-middle-of-town",
+    name: "Why Is There a Hole in the Middle of Town?",
+    status: "In Development — Playable Now",
+    type: "Game",
+    featured: false,
+    overview: "There is a hole in the middle of town. Nobody knows why. Prepare in town, take a questionable job, descend into a dangerously absurd dungeon, and decide how much deeper to go before trying to get back.",
+    artwork: {
+      src: "/assets/why-is-there-a-hole-in-the-middle-of-town.png",
+      alt: "Official game artwork showing a deep hole at the center of a colorful town, with a goose and an adventurer nearby.",
+      width: 1254,
+      height: 1254
+    },
+    developmentNote: "Playable development build. Mechanics, balance, art, audio, dungeon generation, and content continue to evolve.",
+    links: [{ label: "Play Current Build", href: "https://mirpkered.github.io/why-is-there-a-hole-in-the-middle-of-the-town/" }],
+    systems: [
+      "Turn-based, single-player exploration through procedurally evolving dungeons",
+      "Persistent automapping of discovered spaces",
+      "Town bulletin-board quests, merchants, and strange NPC encounters",
+      "Ridiculous equipment, buying, selling, and barter",
+      "Hand-drawn absurd enemies, with colored and original-ink sprite modes",
+      "Events, landmarks, hazards, and bizarre dungeon rooms",
+      "Risk-based return trips and persistent local saves"
+    ],
+    principles: [
+      "Readability before decoration",
+      "Accessibility is a feature",
+      "Theme the surfaces, never rearrange the gameplay",
+      "Environmental storytelling should enhance interaction"
+    ]
+  },
+  {
     slug: "winkbound",
     name: "Winkbound",
     status: "Concept / Active Development",
