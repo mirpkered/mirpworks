@@ -122,5 +122,21 @@ export const projects = [
     tone: "Dark comedy",
     gameplay: ["Commander Zombie", "Basic Zombies", "Civilians", "Specialist characters"],
     links: [{ label: "View on itch.io", href: "https://mirpkered.itch.io/zombie-swarm" }]
+  },
+  {
+    slug: "maze-adventure",
+    name: "Maze Adventure",
+    status: "Active Development",
+    type: "Game",
+    featured: false,
+    overview: "A mobile-friendly maze game focused on straightforward navigation, approachable play, and expandable Free Play difficulty options.",
+    systems: [
+      "Maze navigation",
+      "Free Play with multiple difficulty levels",
+      "Mobile-friendly interaction",
+      "Clear, readable presentation and compact play sessions"
+    ],
+    principles: ["Mobile-first whenever practical", "Readability before decoration", "Accessibility is a feature", "Test before polishing"],
+    links: [{ label: "Play", href: "https://mirpkered.github.io/maze-adventure/" }]
   }
 ];
