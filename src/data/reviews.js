@@ -5,7 +5,7 @@ export const reviewCategories = [
   { id: "everyday-finds", name: "Everyday Finds" }
 ];
 
-// Only records marked "published" are rendered into public pages or copied media.
+// Draft records are private. In-progress and published records are public.
 // Keep subjective fields empty until the reviewer supplies original first-hand content.
 export const reviews = [
   {
@@ -23,7 +23,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4szUExz",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "plok-the-exploding-man-volume-1-awake",
@@ -40,7 +40,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4icmwD5",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "plok-the-exploding-man-volume-4-destination-z",
@@ -57,7 +57,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4iezsby",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "plok-the-exploding-man-volume-2-boom",
@@ -74,7 +74,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4siwN5g",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "plok-the-exploding-man-volume-3-cave",
@@ -91,7 +91,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4siwS94",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "plok-the-exploding-man-volume-5-the-trial-of-plok",
@@ -108,7 +108,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4i8IsPs",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "the-adventures-of-dr-mcninja-volume-2-timefist",
@@ -125,7 +125,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4siwXJU",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "adventures-of-dr-mcninja-the-king-radical",
@@ -142,7 +142,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4dR2mgw",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "the-adventures-of-dr-mcninja-night-powers",
@@ -159,7 +159,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/487D1LQ",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-6-piece-hybrid-frying-pan-set",
@@ -176,7 +176,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4scMpad",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-12-inch-hybrid-nonstick-wok-with-lid",
@@ -193,7 +193,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4ixm1Vj",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-12-inch-hybrid-frying-pan-with-lid",
@@ -210,7 +210,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/3WCJkEB",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-10-inch-hybrid-frying-pan",
@@ -227,7 +227,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/4elcG0m",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-8-inch-hybrid-frying-pan",
@@ -244,7 +244,7 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/3WDIqrq",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   },
   {
     slug: "hexclad-8-inch-hybrid-frying-pan-with-lid",
@@ -261,8 +261,10 @@ export const reviews = [
     affiliateUrl: "https://amzn.to/47vxdvu",
     publishedAt: null,
     updatedAt: null,
-    status: "draft"
+    status: "in-progress"
   }
 ];
 
+export const inProgressReviews = reviews.filter((review) => review.status === "in-progress");
 export const publishedReviews = reviews.filter((review) => review.status === "published");
+export const publicReviews = reviews.filter((review) => ["in-progress", "published"].includes(review.status));

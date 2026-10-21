@@ -145,31 +145,31 @@ export const pages = [
   }
 ];
 
-import { publishedReviews, reviewCategories } from "./data/reviews.js";
+import { publicReviews, reviewCategories } from "./data/reviews.js";
 
 const amazonDisclosure = "As an Amazon Associate I earn from qualifying purchases.";
 const affiliateDisclosure = "Affiliate link: I may earn a commission if you purchase through this link.";
-const reviewByCategory = (categoryId) => publishedReviews.filter((review) => review.categoryId === categoryId);
+const reviewByCategory = (categoryId) => publicReviews.filter((review) => review.categoryId === categoryId);
 
 const reviewCatalog = layout({
   title: "Reviews",
-  description: "Original Mirpworks product reviews across books, games, technology, and everyday finds.",
+  description: "Mirpworks product reviews and transparent review-in-progress notes across books, games, technology, and everyday finds.",
   path: "/reviews/",
   canonicalUrl: "https://mirpworks.com/reviews/",
-  content: `<header class="page-head shell review-page-head"><p class="eyebrow">Gear &amp; Reviews</p><h1>Reviews</h1><p>Original, first-hand reviews from the Mirpworks studio—kept separate from our games and applications.</p></header>
+  content: `<header class="page-head shell review-page-head"><p class="eyebrow">Gear &amp; Reviews</p><h1>Reviews</h1><p>Original, first-hand reviews and transparent updates on reviews being prepared by the Mirpworks studio—kept separate from our games and applications.</p></header>
     <section class="review-disclosure shell" aria-label="Amazon Associates disclosure"><p>${amazonDisclosure}</p></section>
     <section class="section shell review-catalog" aria-labelledby="review-categories-title"><div class="section-heading"><div><p class="eyebrow">The catalog</p><h2 id="review-categories-title">Browse by category</h2></div></div>
       ${reviewCategories.map((category) => {
         const categoryReviews = reviewByCategory(category.id);
-        return `<section class="review-category" id="${category.id}" aria-labelledby="${category.id}-title"><div class="review-category-heading"><h3 id="${category.id}-title">${escapeHtml(category.name)}</h3><span>${categoryReviews.length} ${categoryReviews.length === 1 ? "review" : "reviews"}</span></div>${categoryReviews.length ? `<div class="review-card-grid">${categoryReviews.map((review) => `<article class="review-card"><p class="eyebrow">${escapeHtml(category.name)}</p><h4><a href="/reviews/${encodeURIComponent(review.slug)}/">${escapeHtml(review.productTitle)}</a></h4>${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}<a class="text-link" href="/reviews/${encodeURIComponent(review.slug)}/">Read review <span aria-hidden="true">↗</span></a></article>`).join("")}</div>` : `<p class="review-empty-category">No reviews published here yet.</p>`}</section>`;
+        return `<section class="review-category" id="${category.id}" aria-labelledby="${category.id}-title"><div class="review-category-heading"><h3 id="${category.id}-title">${escapeHtml(category.name)}</h3><span>${categoryReviews.length} ${categoryReviews.length === 1 ? "item" : "items"}</span></div>${categoryReviews.length ? `<div class="review-card-grid">${categoryReviews.map((review) => `<article class="review-card"><p class="eyebrow">${escapeHtml(category.name)}</p>${review.status === "in-progress" ? `<p class="review-status">Review in progress</p>` : ""}<h4><a href="/reviews/${encodeURIComponent(review.slug)}/">${escapeHtml(review.productTitle)}</a></h4>${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}<a class="text-link" href="/reviews/${encodeURIComponent(review.slug)}/">${review.status === "in-progress" ? "View details" : "Read review"} <span aria-hidden="true">↗</span></a></article>`).join("")}</div>` : `<p class="review-empty-category">No items in this category yet.</p>`}</section>`;
       }).join("")}
     </section>
-    <section class="review-empty shell" aria-label="Review publication status"><p class="eyebrow">A note from the studio</p><h2>Original reviews are coming.</h2><p>We’ll publish a review when we have our own experience and writing ready to share. Nothing is rated or recommended here until then.</p></section>`
+    ${publicReviews.length ? `<section class="review-empty shell" aria-label="Review publication status"><p class="eyebrow">A note from the studio</p><h2>Some reviews are in progress.</h2><p>These pages identify products the owner possesses while original photos and first-hand impressions are being prepared. They are not completed reviews.</p></section>` : `<section class="review-empty shell" aria-label="Review publication status"><p class="eyebrow">A note from the studio</p><h2>Original reviews are coming.</h2><p>We’ll publish a review when we have our own experience and writing ready to share. Nothing is rated or recommended here until then.</p></section>`}`
 });
 
 pages.push({ path: "/reviews/", output: "reviews/index.html", html: reviewCatalog });
 
-for (const review of publishedReviews) {
+for (const review of publicReviews) {
   const category = reviewCategories.find((item) => item.id === review.categoryId);
   if (!category) throw new Error(`Published review ${review.slug} has an unknown category`);
   const publishedCopy = review.writtenReview?.sections?.map((section) => `<section class="review-copy-section"><h2>${escapeHtml(section.heading)}</h2>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>`).join("") ?? "";
@@ -178,12 +178,14 @@ for (const review of publishedReviews) {
   const prosCons = review.pros?.length || review.cons?.length ? `<div class="review-pros-cons">${review.pros?.length ? `<section><h2>What worked for me</h2><ul>${review.pros.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>` : ""}${review.cons?.length ? `<section><h2>What didn’t</h2><ul>${review.cons.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>` : ""}</div>` : "";
   const dateMetadata = review.publishedAt ? `<p class="review-date">Published <time datetime="${escapeHtml(review.publishedAt)}">${escapeHtml(review.publishedAt)}</time>${review.updatedAt ? ` · Updated <time datetime="${escapeHtml(review.updatedAt)}">${escapeHtml(review.updatedAt)}</time>` : ""}</p>` : "";
   const affiliateCta = review.affiliateUrl ? `<aside class="review-affiliate" aria-label="Affiliate link disclosure"><p>${amazonDisclosure}</p><p>${affiliateDisclosure}</p><a class="button" href="${escapeHtml(review.affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener noreferrer">View on Amazon <span aria-hidden="true">↗</span></a></aside>` : "";
+  const progressNote = review.status === "in-progress" ? `<section class="review-progress-note" aria-label="Review status"><p>We own this item and are preparing a full Mirpworks review. Check back for original photos and first-hand impressions.</p></section>` : "";
+  const pageDescription = review.status === "in-progress" ? `Review in progress for ${review.productTitle}. The owner possesses this item; original photos and first-hand impressions are being prepared.` : review.productDescription;
   const page = layout({
     title: review.productTitle,
-    description: review.productDescription,
+    description: pageDescription,
     path: `/reviews/${review.slug}/`,
     canonicalUrl: `https://mirpworks.com/reviews/${review.slug}/`,
-    content: `<header class="page-head shell review-detail-head"><a class="back-link" href="/reviews/">← Reviews</a><p class="eyebrow">${escapeHtml(category.name)}</p><h1>${escapeHtml(review.productTitle)}</h1>${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}${dateMetadata}</header><article class="section shell review-detail">${review.writtenReview?.introduction ? `<div class="review-introduction"><p>${escapeHtml(review.writtenReview.introduction)}</p></div>` : ""}${photographs}${video}${publishedCopy}${prosCons}${review.recommendationSummary ? `<aside class="review-recommendation"><p class="eyebrow">In short</p><p>${escapeHtml(review.recommendationSummary)}</p></aside>` : ""}${affiliateCta}</article>`
+    content: `<header class="page-head shell review-detail-head"><a class="back-link" href="/reviews/">← Reviews</a><p class="eyebrow">${escapeHtml(category.name)}</p><h1>${escapeHtml(review.productTitle)}</h1>${review.status === "in-progress" ? `<p class="review-status">Review in progress</p>` : ""}${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}${dateMetadata}</header><article class="section shell review-detail">${progressNote}${review.writtenReview?.introduction ? `<div class="review-introduction"><p>${escapeHtml(review.writtenReview.introduction)}</p></div>` : ""}${photographs}${video}${publishedCopy}${prosCons}${review.recommendationSummary ? `<aside class="review-recommendation"><p class="eyebrow">In short</p><p>${escapeHtml(review.recommendationSummary)}</p></aside>` : ""}${affiliateCta}</article>`
   });
   pages.push({ path: `/reviews/${review.slug}/`, output: `reviews/${review.slug}/index.html`, html: page });
 }

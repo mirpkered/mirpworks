@@ -2,7 +2,7 @@ import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { pages } from "../src/site.js";
-import { publishedReviews } from "../src/data/reviews.js";
+import { publicReviews } from "../src/data/reviews.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
@@ -32,7 +32,7 @@ await cp(resolve(root, "src/assets/why-is-there-a-hole-in-the-middle-of-town.png
 await cp(resolve(root, "src/assets/brand/mirpworks-logo-source.jpg"), resolve(dist, "assets/brand/mirpworks-logo-source.jpg"));
 await cp(resolve(root, "src/assets/brand/mirpworks-logo.jpg"), resolve(dist, "assets/brand/mirpworks-logo.jpg"));
 await cp(resolve(root, "src/assets/brand/mirpworks-mark.jpg"), resolve(dist, "assets/brand/mirpworks-mark.jpg"));
-for (const review of publishedReviews) {
+for (const review of publicReviews) {
   for (const photograph of review.originalPhotographs ?? []) {
     const prefix = `/assets/reviews/${review.slug}/`;
     if (!photograph.src.startsWith(prefix) || photograph.src.includes("..")) {

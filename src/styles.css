@@ -14,6 +14,9 @@
 .review-detail{padding-top:2.5rem}
 .review-detail-head h1{font-size:clamp(2.8rem,9vw,6rem);line-height:.98;max-width:17ch;overflow-wrap:anywhere}
 .review-detail-head .back-link{margin-bottom:1.5rem}
+.review-status{display:inline-flex;align-items:center;max-width:100%;margin:.6rem 0;padding:.35rem .7rem;border:1px solid var(--line);border-radius:999px;background:#e3ebe6;color:#26382f;font-size:.85rem;font-weight:750;line-height:1.35;overflow-wrap:anywhere}
+.review-progress-note{max-width:48rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:.7rem;background:#eaf0ed;color:var(--ink)}
+.review-progress-note p{margin:0}
 .review-card-grid{display:grid;gap:1rem;margin-top:1rem}
 .review-card{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;padding:1.2rem;background:#e7e4db;border:1px solid var(--line);border-radius:.65rem}
 .review-card h4{margin:0;font:400 1.55rem/1.12 var(--serif)}
