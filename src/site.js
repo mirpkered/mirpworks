@@ -5,6 +5,7 @@ const nav = [
   ["/projects/", "Projects"],
   ["/studio/", "Studio"],
   ["/about/", "About"],
+  ["/reviews/", "Reviews"],
   ["/contact/", "Contact"]
 ];
 
@@ -20,7 +21,7 @@ function brandLogo() {
   return `<span class="hero-logo-frame"><img src="/assets/brand/mirpworks-logo.jpg" alt="Mirpworks — Let’s play a game." width="1200" height="500"></span>`;
 }
 
-function layout({ title, description, path, content, bodyClass = "" }) {
+function layout({ title, description, path, content, bodyClass = "", canonicalUrl = "" }) {
   const pageTitle = title === "Mirpworks" ? title : `${title} — Mirpworks`;
   return `<!doctype html>
 <html lang="en">
@@ -30,6 +31,7 @@ function layout({ title, description, path, content, bodyClass = "" }) {
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="theme-color" content="#111513">
   <title>${escapeHtml(pageTitle)}</title>
+  ${canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">` : ""}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="/assets/responsive-fix.css">
@@ -142,6 +144,49 @@ export const pages = [
     })
   }
 ];
+
+import { publishedReviews, reviewCategories } from "./data/reviews.js";
+
+const amazonDisclosure = "As an Amazon Associate I earn from qualifying purchases.";
+const affiliateDisclosure = "Affiliate link: I may earn a commission if you purchase through this link.";
+const reviewByCategory = (categoryId) => publishedReviews.filter((review) => review.categoryId === categoryId);
+
+const reviewCatalog = layout({
+  title: "Reviews",
+  description: "Original Mirpworks product reviews across books, games, technology, and everyday finds.",
+  path: "/reviews/",
+  canonicalUrl: "https://mirpworks.com/reviews/",
+  content: `<header class="page-head shell review-page-head"><p class="eyebrow">Gear &amp; Reviews</p><h1>Reviews</h1><p>Original, first-hand reviews from the Mirpworks studio—kept separate from our games and applications.</p></header>
+    <section class="review-disclosure shell" aria-label="Amazon Associates disclosure"><p>${amazonDisclosure}</p></section>
+    <section class="section shell review-catalog" aria-labelledby="review-categories-title"><div class="section-heading"><div><p class="eyebrow">The catalog</p><h2 id="review-categories-title">Browse by category</h2></div></div>
+      ${reviewCategories.map((category) => {
+        const categoryReviews = reviewByCategory(category.id);
+        return `<section class="review-category" id="${category.id}" aria-labelledby="${category.id}-title"><div class="review-category-heading"><h3 id="${category.id}-title">${escapeHtml(category.name)}</h3><span>${categoryReviews.length} ${categoryReviews.length === 1 ? "review" : "reviews"}</span></div>${categoryReviews.length ? `<div class="review-card-grid">${categoryReviews.map((review) => `<article class="review-card"><p class="eyebrow">${escapeHtml(category.name)}</p><h4><a href="/reviews/${encodeURIComponent(review.slug)}/">${escapeHtml(review.productTitle)}</a></h4>${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}<a class="text-link" href="/reviews/${encodeURIComponent(review.slug)}/">Read review <span aria-hidden="true">↗</span></a></article>`).join("")}</div>` : `<p class="review-empty-category">No reviews published here yet.</p>`}</section>`;
+      }).join("")}
+    </section>
+    <section class="review-empty shell" aria-label="Review publication status"><p class="eyebrow">A note from the studio</p><h2>Original reviews are coming.</h2><p>We’ll publish a review when we have our own experience and writing ready to share. Nothing is rated or recommended here until then.</p></section>`
+});
+
+pages.push({ path: "/reviews/", output: "reviews/index.html", html: reviewCatalog });
+
+for (const review of publishedReviews) {
+  const category = reviewCategories.find((item) => item.id === review.categoryId);
+  if (!category) throw new Error(`Published review ${review.slug} has an unknown category`);
+  const publishedCopy = review.writtenReview?.sections?.map((section) => `<section class="review-copy-section"><h2>${escapeHtml(section.heading)}</h2>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>`).join("") ?? "";
+  const photographs = review.originalPhotographs?.length ? `<section class="review-gallery" aria-label="Original product photographs">${review.originalPhotographs.map((photo) => `<figure><img src="${escapeHtml(photo.src)}" alt="${escapeHtml(photo.alt)}" loading="lazy" decoding="async" width="${photo.width}" height="${photo.height}"><figcaption>${escapeHtml(photo.caption ?? "")}</figcaption></figure>`).join("")}</section>` : "";
+  const video = review.videoReviewUrl ? `<p><a class="text-link" href="${escapeHtml(review.videoReviewUrl)}" target="_blank" rel="noopener noreferrer">Watch the video review <span aria-hidden="true">↗</span></a></p>` : "";
+  const prosCons = review.pros?.length || review.cons?.length ? `<div class="review-pros-cons">${review.pros?.length ? `<section><h2>What worked for me</h2><ul>${review.pros.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>` : ""}${review.cons?.length ? `<section><h2>What didn’t</h2><ul>${review.cons.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>` : ""}</div>` : "";
+  const dateMetadata = review.publishedAt ? `<p class="review-date">Published <time datetime="${escapeHtml(review.publishedAt)}">${escapeHtml(review.publishedAt)}</time>${review.updatedAt ? ` · Updated <time datetime="${escapeHtml(review.updatedAt)}">${escapeHtml(review.updatedAt)}</time>` : ""}</p>` : "";
+  const affiliateCta = review.affiliateUrl ? `<aside class="review-affiliate" aria-label="Affiliate link disclosure"><p>${amazonDisclosure}</p><p>${affiliateDisclosure}</p><a class="button" href="${escapeHtml(review.affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener noreferrer">View on Amazon <span aria-hidden="true">↗</span></a></aside>` : "";
+  const page = layout({
+    title: review.productTitle,
+    description: review.productDescription,
+    path: `/reviews/${review.slug}/`,
+    canonicalUrl: `https://mirpworks.com/reviews/${review.slug}/`,
+    content: `<header class="page-head shell review-detail-head"><a class="back-link" href="/reviews/">← Reviews</a><p class="eyebrow">${escapeHtml(category.name)}</p><h1>${escapeHtml(review.productTitle)}</h1>${review.productDescription ? `<p>${escapeHtml(review.productDescription)}</p>` : ""}${dateMetadata}</header><article class="section shell review-detail">${review.writtenReview?.introduction ? `<div class="review-introduction"><p>${escapeHtml(review.writtenReview.introduction)}</p></div>` : ""}${photographs}${video}${publishedCopy}${prosCons}${review.recommendationSummary ? `<aside class="review-recommendation"><p class="eyebrow">In short</p><p>${escapeHtml(review.recommendationSummary)}</p></aside>` : ""}${affiliateCta}</article>`
+  });
+  pages.push({ path: `/reviews/${review.slug}/`, output: `reviews/${review.slug}/index.html`, html: page });
+}
 
 for (const project of projects) {
   pages.push({
