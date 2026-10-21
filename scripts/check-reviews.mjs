@@ -29,6 +29,26 @@ else {
   if (drMcNinja.pros.length || drMcNinja.cons.length || drMcNinja.recommendationSummary || drMcNinja.writtenReview.introduction || drMcNinja.writtenReview.sections.length) fail("The Dr. McNinja draft contains unprovided subjective review content");
 }
 
+const batchDrafts = [
+  ["https://amzn.to/4icmwD5", "Plok The Exploding Man: Volume 1: Awake! (Plok The Exploding Man, The Comic Strip)", "plok-the-exploding-man-volume-1-awake"],
+  ["https://amzn.to/4iezsby", "Plok The Exploding Man: Volume 4: Destination Z (Plok The Exploding Man, The Comic Strip)", "plok-the-exploding-man-volume-4-destination-z"],
+  ["https://amzn.to/4siwN5g", "Plok The Exploding Man: Volume 2: Boom! (Plok The Exploding Man, The Comic Strip)", "plok-the-exploding-man-volume-2-boom"],
+  ["https://amzn.to/4siwS94", "Plok The Exploding Man: Volume 3: Cave (Plok The Exploding Man, The Comic Strip)", "plok-the-exploding-man-volume-3-cave"],
+  ["https://amzn.to/4i8IsPs", "Plok The Exploding Man: Volume 5: The Trial of Plok (Plok The Exploding Man, The Comic Strip)", "plok-the-exploding-man-volume-5-the-trial-of-plok"],
+  ["https://amzn.to/4siwXJU", "The Adventures of Dr. McNinja Volume 2: Timefist", "the-adventures-of-dr-mcninja-volume-2-timefist"],
+  ["https://amzn.to/4dR2mgw", "Adventures of Dr. McNinja, The: King Radical", "adventures-of-dr-mcninja-the-king-radical"],
+  ["https://amzn.to/487D1LQ", "The Adventures of Dr. McNinja: Night Powers", "the-adventures-of-dr-mcninja-night-powers"]
+];
+for (const [affiliateUrl, productTitle, slug] of batchDrafts) {
+  const matches = reviews.filter((review) => review.affiliateUrl === affiliateUrl);
+  if (matches.length !== 1) fail(`${affiliateUrl} must exist exactly once in review data`);
+  const review = matches[0];
+  if (!review) continue;
+  if (review.productTitle !== productTitle || review.slug !== slug || review.status !== "draft") fail(`${affiliateUrl} has incorrect title, slug, or publication status`);
+  if (review.categoryId !== "books-comics" || review.ownerPossessesProduct !== true) fail(`${affiliateUrl} has incorrect category or ownership note`);
+  if (review.productDescription || review.videoReviewUrl || review.writtenReview.introduction || review.writtenReview.sections.length || review.pros.length || review.cons.length || review.recommendationSummary || review.publishedAt !== null || review.updatedAt !== null || review.originalPhotographs.length) fail(`${affiliateUrl} has non-empty subjective, publication, or media fields`);
+}
+
 const catalog = pages.find((page) => page.path === "/reviews/");
 if (!catalog) fail("The Reviews landing route is missing");
 else {
