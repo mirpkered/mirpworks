@@ -49,6 +49,24 @@ for (const [affiliateUrl, productTitle, slug] of batchDrafts) {
   if (review.productDescription || review.videoReviewUrl || review.writtenReview.introduction || review.writtenReview.sections.length || review.pros.length || review.cons.length || review.recommendationSummary || review.publishedAt !== null || review.updatedAt !== null || review.originalPhotographs.length) fail(`${affiliateUrl} has non-empty subjective, publication, or media fields`);
 }
 
+const additionalBatchDrafts = [
+  ["https://amzn.to/4scMpad", "HexClad 6pc Hybrid Nonstick Frying Pans Set with Lids, 8, 10 & 12\" Pans", "hexclad-6-piece-hybrid-frying-pan-set"],
+  ["https://amzn.to/4ixm1Vj", "HexClad 12\" Hybrid Nonstick Wok & Lid, Induction-Ready, Dishwasher Safe", "hexclad-12-inch-hybrid-nonstick-wok-with-lid"],
+  ["https://amzn.to/3WCJkEB", "HexClad 12\" Hybrid Nonstick Frying Pan with Lid, Dishwasher & Oven Safe", "hexclad-12-inch-hybrid-frying-pan-with-lid"],
+  ["https://amzn.to/4elcG0m", "HexClad 10\" Hybrid Nonstick Frying Pan, Dishwasher & Induction Safe", "hexclad-10-inch-hybrid-frying-pan"],
+  ["https://amzn.to/3WDIqrq", "HexClad 8\" Hybrid Nonstick Frying Pan, Dishwasher & Induction Safe", "hexclad-8-inch-hybrid-frying-pan"],
+  ["https://amzn.to/47vxdvu", "HexClad 8\" Hybrid Nonstick Frying Pan with Lid, Dishwasher & Oven Safe", "hexclad-8-inch-hybrid-frying-pan-with-lid"]
+];
+for (const [affiliateUrl, productTitle, slug] of additionalBatchDrafts) {
+  const matches = reviews.filter((review) => review.affiliateUrl === affiliateUrl);
+  if (matches.length !== 1) fail(`${affiliateUrl} must exist exactly once in review data`);
+  const review = matches[0];
+  if (!review) continue;
+  if (review.productTitle !== productTitle || review.slug !== slug || review.status !== "draft") fail(`${affiliateUrl} has incorrect title, slug, or publication status`);
+  if (review.categoryId !== "everyday-finds" || review.ownerPossessesProduct !== true) fail(`${affiliateUrl} has incorrect category or ownership note`);
+  if (review.productDescription || review.videoReviewUrl || review.writtenReview.introduction || review.writtenReview.sections.length || review.pros.length || review.cons.length || review.recommendationSummary || review.publishedAt !== null || review.updatedAt !== null || review.originalPhotographs.length) fail(`${affiliateUrl} has non-empty subjective, publication, or media fields`);
+}
+
 const catalog = pages.find((page) => page.path === "/reviews/");
 if (!catalog) fail("The Reviews landing route is missing");
 else {
